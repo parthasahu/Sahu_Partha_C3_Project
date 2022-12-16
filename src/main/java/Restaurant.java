@@ -38,6 +38,14 @@ public class Restaurant {
         return null;
     }
 
+    public int getOrderCost(List<String> items) {
+        List<Item> selectedItems = new ArrayList<Item>();
+        items.forEach(item-> selectedItems.add(findItemByName(item)));
+
+        int orderCost= selectedItems.stream().mapToInt(Item::getPrice).sum();
+        return orderCost;
+    }
+
     public void addToMenu(String name, int price) {
         Item newItem = new Item(name,price);
         menu.add(newItem);
